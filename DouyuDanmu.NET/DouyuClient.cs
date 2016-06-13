@@ -7,7 +7,7 @@ using SuperSocket.ClientEngine;
 
 namespace DouyuDanmu
 {
-    class DouyuClient
+    public class DouyuClient
     {
         private EasyClient client;
         private Timer ticker;
@@ -16,12 +16,13 @@ namespace DouyuDanmu
         public Int32 Port = 8601;
         public string RoomId;
 
-        public DouyuClient(string roomId)
+        public DouyuClient(string roomId, Action<Dictionary<string, object>> messageHandler)
         {
-            client = new EasyClient();
-            client.Initialize(new DouyuPackageFilter(), Receive);
-
             RoomId = roomId;
+            client = new EasyClient();
+            client.Initialize(new DouyuPackageFilter(), (package) => {
+                messageHandler(DouyuUtility.Deserialize(package.Data));
+            });
         }
 
         public async void Connect()
@@ -33,7 +34,7 @@ namespace DouyuDanmu
             {
                 Login();
                 JoinGroup();
-                ticker = new Timer((state) => { Tick(); }, client, TimeSpan.Zero, TimeSpan.FromSeconds(30));
+                ticker = new Timer((state) => { Tick(); }, null, TimeSpan.Zero, TimeSpan.FromSeconds(30));
             }
         }
 
@@ -44,22 +45,6 @@ namespace DouyuDanmu
             byte[] data = package.Encode(argsStr);
 
             client.Send(new ArraySegment<byte>(data));
-        }
-
-        public void Receive(DouyuPackageInfo package)
-        {
-            var msg = DouyuUtility.Deserialize(package.Data);
-
-            switch((string)msg["type"])
-            {
-                case "chatmsg":
-                    Console.WriteLine(msg["txt"]);
-                    break;
-
-                default:
-                    Console.WriteLine(String.Format("<{0}>", msg["type"]));
-                    break;
-            }
         }
 
         public void Login()

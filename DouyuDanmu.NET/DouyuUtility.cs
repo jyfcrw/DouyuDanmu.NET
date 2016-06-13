@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DouyuDanmu
 {
-    class DouyuUtility
+    public class DouyuUtility
     {
         public static string Serialize(Dictionary<string, object> data)
         {

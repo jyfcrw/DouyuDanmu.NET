@@ -4,7 +4,7 @@ using SuperSocket.ProtoBase;
 
 namespace DouyuDanmu
 {
-    class DouyuPackageFilter : FixedHeaderReceiveFilter<DouyuPackageInfo>
+    public class DouyuPackageFilter : FixedHeaderReceiveFilter<DouyuPackageInfo>
     {
         public DouyuPackageFilter() : base(DouyuPackageInfo.HeaderFullSize)
         {

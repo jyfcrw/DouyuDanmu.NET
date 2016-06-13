@@ -5,7 +5,7 @@ using System.IO;
 
 namespace DouyuDanmu
 {
-    class DouyuPackageInfo : IPackageInfo
+    public class DouyuPackageInfo : IPackageInfo
     {
         public static int HeaderSize = 8;
         public static int HeaderFullSize = 12;
