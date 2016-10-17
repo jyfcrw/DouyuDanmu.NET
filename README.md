@@ -1,5 +1,5 @@
 # DouyuDanmu.NET
-依照《斗鱼弹幕服务器第三方接入协议》(v1.4.1), 接入斗鱼弹幕服务的客户端C#类库实现, 基于.NET 4.6
+依照《斗鱼弹幕服务器第三方接入协议》(v1.4.1), 接入斗鱼弹幕服务的客户端C#类库实现, 基于.NET 4.0
 
 ~~~~
   using DouyuDanmu;
@@ -23,3 +23,10 @@
   // 开始接收弹幕
   client.Connect();
 ~~~~
+
+引用的Nuget包：
+* SuperSocket.ClientEngine
+* SuperSocket.ProtoBase
+* Microsoft.Bcl
+* Microsoft.Bcl.Async
+* Microsoft.Bcl.Build
