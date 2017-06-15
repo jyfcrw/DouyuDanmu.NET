@@ -27,7 +27,7 @@ namespace DouyuDanmu
 
         public async void Connect()
         {
-            IPAddress[] ips = await Dns.GetHostAddressesAsync(Host);
+            IPAddress[] ips = Dns.GetHostAddresses(Host);
             var connected = await client.ConnectAsync(new IPEndPoint(ips.First(), Port));
 
             if (connected)

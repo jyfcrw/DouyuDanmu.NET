@@ -10,7 +10,7 @@ namespace DouyuDanmu
         public static int HeaderSize = 8;
         public static int HeaderFullSize = 12;
 
-        public enum MessageType : Int16
+        public enum MessageType : short
         {
             CLIENT_TO_SERVER = 689,
             SERVER_TO_CLIENT = 690
